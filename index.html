@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="modyfikacjeDOM.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="divsOps">
+        <div id="buttons">
+            <button onclick="addDiv()">Dodaj div</button>
+            <button onclick="removeDiv()">Usun div</button>
+            <button onclick="changeColor()">Zmien Kolor</button>
+            <button onclick="changeText()">Wpis do div</button>
+        </div>
+    
+        <div class="myDivs" id="div1"></div>
+        <div class="myDivs" id="div2"></div>
+        <div class="myDivs" id="div3"></div>
+        <div class="myDivs" id="div4"></div>
+    </div>
+    
+
+    <div id="calculator">
+        <input type="number" id="num1" placeholder="Liczba 1">
+        <select id="operation">
+            <option value="add">Dodawanie</option>
+            <option value="subtract">Odejmowanie</option>
+            <option value="multiply">Mnozenie</option>
+            <option value="divide">Dzielenie</option>
+        </select>
+        <input type="number" id="num2" placeholder="Liczba 2">
+        <button onclick="calculate()">Oblicz</button>
+        <div id="result"></div>
+    </div>
+
+</body>
+</html>

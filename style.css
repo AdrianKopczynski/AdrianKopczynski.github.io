@@ -1,0 +1,44 @@
+.myDivs {
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+            margin: 10px;
+            display: inline-block;
+}
+
+.buttons{
+            position:relative;
+}
+
+
+
+#calculator {
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+input, select, button {
+    margin: 5px;
+    padding: 8px;
+    font-size: 16px;
+}
+
+#caluclator button {
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 3px;
+}
+
+#result {
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+.error {
+    color: red;
+}
