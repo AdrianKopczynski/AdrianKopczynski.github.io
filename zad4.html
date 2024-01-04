@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <title>Zadanie 4</title>
+        <style>
+            .responsive {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: none;
+                cursor: pointer;
+                font-size: 20px;
+                background: none;
+                border: none;
+            }
+
+            .responsive ul {
+                list-style-type: none;
+                padding: 0;
+            }
+
+            .responsive ul li {
+                padding: 15px;
+                text-align: center;
+            }
+
+            @media screen and (max-width: 600px) {
+                .menu-toggle {
+                    display: block;
+                }
+
+                nav ul {
+                    display: none;
+                }
+
+                nav ul.show {
+                    display: block;
+                }
+            }
+        </style>
+        
+    </head>
+    <body>
+        <a href="index.html">Wróć</a>
+
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const menuToggle = document.querySelector('.menu-toggle');
+                const nav = document.querySelector('.responsive ul');
+
+                menuToggle.addEventListener('click', function () {
+                    nav.classList.toggle('show');
+                });
+            });
+        </script>
+
+        <button class="menu-toggle">Menu</button>
+        <div class="whole">
+        <div class="strona">
+            <header>
+            <nav class="responsive">
+                <ul>
+                    <li class="lista_pierwsza">
+                        <a class="pierwszy" id="pierwszy" href="index.html">link</a>
+                        <ul>
+                            <li class="lista_druga">
+                                <a class="pierwszy" href="2.html">link 2</a>
+                            </li>
+                            <li class="lista_druga">
+                                <a class="pierwszy" href="2.html">link 2</a>
+                            </li>
+                             <li class="lista_druga">
+                                <a class="pierwszy" href="2.html">link 2</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="lista_pierwsza">
+                        <a class="pierwszy" href="2.html">link2</a>
+                    </li>
+                     <li class="lista_pierwsza">
+                        <a class="pierwszy" href="3.html">link3</a>
+                    </li>
+                </ul>
+            </nav>
+            </header>
+            <div class="glowna">
+            <article>
+                <h1 class="klasa">title 1</h1>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur imperdiet aliquam purus, venenatis pharetra mi. Sed in urna odio. Suspendisse potenti. Curabitur interdum finibus iaculis. Suspendisse ultricies consectetur turpis id vehicula. Ut nulla eros, consectetur in diam ut, blandit efficitur est. Pellentesque vitae augue ac erat dignissim dignissim eget non enim. 
+                </p>
+                <img alt="" src="https://img.freepik.com/free-photo/wide-angle-shot-single-tree-growing-clouded-sky-during-sunset-surrounded-by-grass_181624-22807.jpg?size=626&ext=jpg&ga=GA1.1.1413502914.1697464800&semt=sph" />
+                <h2>subtitle</h2>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur imperdiet aliquam purus, venenatis pharetra mi. Sed in urna odio. Suspendisse potenti. Curabitur interdum finibus iaculis. Suspendisse ultricies consectetur turpis id vehicula. Ut nulla eros, consectetur in diam ut, blandit efficitur est. Pellentesque vitae augue ac erat dignissim dignissim eget non enim. 
+                </p>
+                <h2>subtitle</h2>
+                <p>lorem ipsum</p>
+            </article>
+             <article>
+                <h1>title 2</h1>
+                <p>lorem ipsum</p>
+                <div>
+                <form action="index.html" method="post">
+                    <div class="kolumna">
+                        <div>
+                            <label for="imie">Imię i nazwisko</label><br />
+                            <input type="text" id="imie" name="imie" placeholder="imię i nazwisko" />
+                        </div>
+                        <div>
+                            <label for="opis">Opis</label><br />
+                            <textarea rows="5" cols="30" id="opis" name="opis" placeholder="wpisz coś o sobie"></textarea>
+                        </div>
+                    </div>
+                    <div class="kolumna">
+                        <div>
+                            <label for="wiek">Wiek</label><br />
+                            <select id="wiek" name="wiek">
+                                <option value="0">wybierz...</option>
+                                <option value="1">Niepełnoletni</option>
+                                <option value="2">Pełnoletni</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>Opcja</label><br />
+                            <input type="radio" name="opcja" value="a" /> a<br />
+                            <input type="radio" name="opcja" value="b" /> b<br />
+                            <input type="radio" name="opcja" value="c" /> c<br />
+                        </div>
+                        <div>
+                            <input type="submit" name="wyslij" value="wyślij">
+                        </div>
+                    </div>
+                </form>
+                        </div>
+                 <table>
+                 
+                    <tr>
+                        <th>col1</th> 
+                        <th>col2</th> 
+                        <th>col3</th> 
+                    </tr>
+                    <tr>
+                        <td>11</td> 
+                        <td>12</td> 
+                        <td>13</td> 
+                    </tr> 
+                    <tr>
+                        <td>11</td> 
+                        <td>12</td> 
+                        <td>13</td> 
+                    </tr> 
+                    <tr>
+                        <td>11</td> 
+                        <td>12</td> 
+                        <td>13</td> 
+                    </tr> 
+                    <tr>
+                        <td>11</td> 
+                        <td>12</td> 
+                        <td>13</td> 
+                    </tr> 
+                    <tr>
+                        <td>11</td> 
+                        <td>12</td> 
+                        <td>13</td> 
+                    </tr> 
+                    <tr>
+                        <td>11</td> 
+                        <td>12</td> 
+                        <td>13</td> 
+                    </tr>  
+                 </table>
+            </article>
+            <footer>
+                <div>
+                    <p>sample text 1</p>
+                </div>
+                <div>
+                    <p>sample text 2</p>
+                </div>
+                <div>
+                    <p>sample text 3</p>
+                </div>
+            </footer>
+        </div> 
+    </div>   
+    </body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <title>Zadanie 2</title>
+        <style>
+            #calculator {
+                text-align: center;
+                padding: 20px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+
+            input, select, button {
+                margin: 5px;
+                padding: 8px;
+                font-size: 16px;
+            }
+
+            button #caluclator  {
+                cursor: pointer;
+                background-color: green;
+                color: white;
+                border: none;
+                border-radius: 3px;
+            }
+
+            #result {
+                margin-top: 10px;
+                font-size: 18px;
+            }
+
+            .error {
+                color: red;
+            }
+        </style>
+    </head>
+    <body>
+        <a href="index.html">Wróć</a>
+
+        <div id="calculator">
+            <input type="number" id="num1" placeholder="Liczba 1">
+            <select id="operation">
+                <option value="add">Dodawanie</option>
+                <option value="subtract">Odejmowanie</option>
+                <option value="multiply">Mnozenie</option>
+                <option value="divide">Dzielenie</option>
+            </select>
+            <input type="number" id="num2" placeholder="Liczba 2">
+            <button onclick="calculate()">Oblicz</button>
+            <div id="result"></div>
+        </div>
+        <script>
+            function calculate() {
+                var num1 = parseFloat(document.getElementById("num1").value);
+                var num2 = parseFloat(document.getElementById("num2").value);
+                var operation = document.getElementById("operation").value;
+                var resultElement = document.getElementById("result");
+
+                if (isNaN(num1) || isNaN(num2)) {
+                    resultElement.innerHTML = '<p class="error">Podaj poprawne liczby!</p>';
+                } else {
+                    switch (operation) {
+                        case "add":
+                            resultElement.innerHTML = "Wynik: " + (num1 + num2);
+                            break;
+                        case "subtract":
+                            resultElement.innerHTML = "Wynik: " + (num1 - num2);
+                            break;
+                        case "multiply":
+                            resultElement.innerHTML = "Wynik: " + (num1 * num2);
+                            break;
+                        case "divide":
+                            if (num2 !== 0) {
+                                resultElement.innerHTML = "Wynik: " + (num1 / num2);
+                            } else {
+                                resultElement.innerHTML = '<p class="error">Nie mozna dzielic przez zero!</p>';
+                            }
+                            break;
+                        default:
+                            resultElement.innerHTML = '<p class="error">Nieprawidlowe dzialanie!</p>';
+                    }
+                }
+            }
+        </script>
+    </body>
+</html>

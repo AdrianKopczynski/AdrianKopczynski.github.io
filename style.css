@@ -1,17 +1,3 @@
-.myDivs {
-            width: 100px;
-            height: 100px;
-            border: 1px solid black;
-            margin: 10px;
-            display: inline-block;
-}
-
-.buttons{
-            position:relative;
-}
-
-
-
 #calculator {
     text-align: center;
     padding: 20px;
@@ -26,9 +12,9 @@ input, select, button {
     font-size: 16px;
 }
 
-#caluclator button {
+button #caluclator  {
     cursor: pointer;
-    background-color: #4CAF50;
+    background-color: green;
     color: white;
     border: none;
     border-radius: 3px;
@@ -41,4 +27,52 @@ input, select, button {
 
 .error {
     color: red;
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+.responsive {
+    display: none;
+}
+
+.menu-toggle {
+    display: none;
+    cursor: pointer;
+    font-size: 20px;
+    background: none;
+    border: none;
+}
+.responsive ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .responsive ul li {
+    padding: 15px;
+    text-align: center;
+  }
+  
+@media screen and (max-width: 600px) {
+    .menu-toggle {
+        display: block;
+    }
+  
+    nav ul {
+        display: none;
+    }
+  
+    nav ul.show {
+        display: block;
+    }
 }

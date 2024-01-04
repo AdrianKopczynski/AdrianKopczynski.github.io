@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <title>Zadanie 1</title>
+        <style>
+            .myDivs {
+                width: 100px;
+                height: 100px;
+                border: 1px solid black;
+                margin: 10px;
+                display: inline-block;
+            }
+
+            .buttons{
+                position:relative;
+            }
+        </style>
+    </head>
+    <body>
+        <a href="index.html">Wróć</a>
+        <div id="divsOps">
+            <div id="buttons">
+                <button onclick="addDiv()">Dodaj div</button>
+                <button onclick="removeDiv()">Usun div</button>
+                <button onclick="changeColor()">Zmien Kolor</button>
+                <button onclick="changeText()">Wpis do div</button>
+            </div>
+        
+            <div class="myDivs" id="div1"></div>
+            <div class="myDivs" id="div2"></div>
+            <div class="myDivs" id="div3"></div>
+            <div class="myDivs" id="div4"></div>
+        </div>
+
+        <script>
+            function addDiv() {
+                var newDiv = document.createElement("div");
+                    newDiv.className = "myDivs";
+                    document.getElementById("divsOps").appendChild(newDiv);
+                }
+
+            function removeDiv() {
+                var divs = document.getElementsByClassName("myDivs");
+                if (divs.length > 0) {
+                        divs[0].remove();
+                }
+            }
+
+            function changeColor() {
+                var divs = document.querySelectorAll(".myDivs");
+                if (divs.length >= 3) {
+                    divs[2].style.backgroundColor = "red";
+                }
+            }
+
+            function changeText() {
+                var divs = document.getElementsByClassName("myDivs");
+                for (var i = 0; i < divs.length; i++) {
+                    divs[i].innerText = "Nowy Tekst";
+                }
+            }
+        </script>
+    </body>
+</html>
