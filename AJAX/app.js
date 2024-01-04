@@ -1,3 +1,6 @@
+const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+const apiUrl = 'http://szuflandia.pjwstk.edu.pl/~ppisarski/zad8/dane.php';
+
 $(document).ready(function () {
     const dataTable = $('#data-table');
     const newsRotator = $('#news-rotator');
@@ -5,7 +8,7 @@ $(document).ready(function () {
 
     function fetchData() {
         $.ajax({
-            url: 'http://szuflandia.pjwstk.edu.pl/~ppisarski/zad8/dane.php',
+            url: proxyUrl + apiUrl,
             method: 'GET',
             dataType: 'json',
             success: function (data) {
