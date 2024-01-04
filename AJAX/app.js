@@ -5,7 +5,7 @@ $(document).ready(function () {
 
     function fetchData() {
         $.ajax({
-            url: 'http://szuflandia.pjwstk.edu.pl/~ppisarski/zad8/dane.php',
+            url: 'https://szuflandia.pjwstk.edu.pl/~ppisarski/zad8/dane.php',
             method: 'GET',
             dataType: 'json',
             success: function (data) {
@@ -46,7 +46,7 @@ $(document).ready(function () {
         newsRotator.show();
     }
 
-    setInterval(fetchData, 1000);
+    setInterval(fetchData, 3000);
 
     fetchData();
 });
