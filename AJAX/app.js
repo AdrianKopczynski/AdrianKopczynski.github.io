@@ -5,7 +5,7 @@ $(document).ready(function () {
 
     function fetchData() {
         $.ajax({
-            url: 'https://szuflandia.pjwstk.edu.pl/~ppisarski/zad8/dane.php',
+            url: 'http://szuflandia.pjwstk.edu.pl/~ppisarski/zad8/dane.php',
             method: 'GET',
             dataType: 'json',
             success: function (data) {
