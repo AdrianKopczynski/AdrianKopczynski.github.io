@@ -69,7 +69,7 @@ $(document).ready(function () {
 
     function renderSnake() {
         $('.snake').remove();
-        for (const segment of snake) {
+        for (segment of snake) {
             if(snake[0]){
                 $('#game-container').append('<div class="snake" id="snakeHead" style="left:' + segment.x + 'px; top:' + segment.y + 'px;"></div>');
             }
