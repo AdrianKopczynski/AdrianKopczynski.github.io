@@ -53,6 +53,9 @@ body {
     border-radius: 50%;
     animation: glow 1s infinite;
 }
+#snakeHead{
+    background-color:yellow;
+}
 #score{
     background-color: white;
     color:black;
