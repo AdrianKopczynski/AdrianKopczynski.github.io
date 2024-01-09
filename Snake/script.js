@@ -28,7 +28,41 @@ $(document).ready(function () {
             y = 0;
             generateFood();
         } else {
-            $('#game-container').append('<div class="food" style="left:' + x + 'px; top:' + y + 'px;"></div>');
+            $('#game-container').append('<div class="food" style="left:' + x + 'px; top:' + y + 'px;">
+                                        <div class="strawberry">
+                                            <div class="seeds">
+                                              <div class="row row-1">
+                                                <div class="seed"></div>
+                                                <div class="seed"></div>
+                                                <div class="seed"></div>
+                                              </div>
+                                              <div class="row row-2">
+                                                <div class="seed"></div>
+                                                <div class="seed"></div>
+                                                <div class="seed"></div>
+                                              </div>
+                                              <div class="row row-3">
+                                                <div class="seed"></div>
+                                                <div class="seed"></div>
+                                                <div class="seed"></div>
+                                              </div>
+                                              <div class="row"><div class="seed"></div></div>
+                                            </div>
+                                           <div class="leaf-1 leaf"></div>
+                                           <div class="leaf-2 leaf"> 
+                                             <div class="right"></div>
+                                             <div class="left"></div>
+                                           </div>
+                                               <div class="leaf leaf-3 leaf-2">
+                                              <div class="right"></div>
+                                              <div class="left"></div>
+                                            </div>
+                                            <div class="leaf leaf-4 leaf-2">
+                                              <div class="right"></div>
+                                              <div class="left"></div>
+                                            </div>
+                                            </div>
+                                        </div>');
             return { x, y };
         }
 
