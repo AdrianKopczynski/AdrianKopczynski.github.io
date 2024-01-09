@@ -37,7 +37,7 @@ $(document).ready(function () {
     function updateSnake() {
         
         const head = { ...snake[0] };
-        head.style.background = red;
+        
         switch (direction) {
             case 'up':
                 head.y -= tileSize;
@@ -70,7 +70,12 @@ $(document).ready(function () {
     function renderSnake() {
         $('.snake').remove();
         for (const segment of snake) {
-            $('#game-container').append('<div class="snake" style="left:' + segment.x + 'px; top:' + segment.y + 'px;"></div>');
+            if(segment = snake[0]){
+                $('#game-container').append('<div class="snake" id="snakeHead" style="left:' + segment.x + 'px; top:' + segment.y + 'px;"></div>');
+            }
+            else{
+                $('#game-container').append('<div class="snake" style="left:' + segment.x + 'px; top:' + segment.y + 'px;"></div>');
+            }
         }
     }
 
