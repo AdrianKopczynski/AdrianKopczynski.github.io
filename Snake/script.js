@@ -35,8 +35,9 @@ $(document).ready(function () {
     }
 
     function updateSnake() {
+        
         const head = { ...snake[0] };
-
+        head.style.background = red;
         switch (direction) {
             case 'up':
                 head.y -= tileSize;
@@ -135,6 +136,6 @@ $(document).ready(function () {
                 break;
         }
     });
-    snake[0].style.backgroundColor = red;
     intervalId = setInterval(gameLoop, 100);
+    
 });
