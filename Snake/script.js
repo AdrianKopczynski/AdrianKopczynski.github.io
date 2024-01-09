@@ -126,21 +126,24 @@ $(document).ready(function () {
     function getHighScore(wynik) {
         var request = new XMLHttpRequest();
         request.onreadystatechange = function () {
+            var dane;
             if (this.readyState == 4 && this.status == 200) {
-                var dane = JSON.parse(this.responseText);
+                dane = JSON.parse(this.responseText);
                 console.log(dane);
             }
-            if (dane.user.some(user => user.score < wynik)) {
-                filteredUsers.sort((a, b) => b.score - a.score);
-                const miejsce = filteredUsers[0].id;
-                $('#game-over-screen').append('<div class="newHighScore">Brawo! Udało ci się osiągnąć ' + miejsce + ' miejsce w tableli wyników!</div>');
+            if (data && data.users && Array.isArray(data.users)) {
+                if (dane.user.some(user => user.score < wynik)) {
+                    filteredUsers.sort((a, b) => b.score - a.score);
+                    const miejsce = filteredUsers[0].id;
+                    $('#game-over-screen').append('<div class="newHighScore">Brawo! Udało ci się osiągnąć ' + miejsce + ' miejsce w tableli wyników!</div>');
+                }
+                dane.users.forEach(user => {
+                    let place = user.id;
+                    let nick = user.name;
+                    let points = user.score;
+                    $('#score-body').append('<tr><td>'+place+'.</td><td>'+nick+'</td><td>'+points+'</td></tr>');
+                }); 
             }
-            dane.users.forEach(user => {
-                let place = user.id;
-                let nick = user.name;
-                let points = user.score;
-                $('#score-body').append('<tr><td>'+place+'.</td><td>'+nick+'</td><td>'+points+'</td></tr>');
-            }); 
         };
 
         request.open('GET', 'hScore.json', true);
