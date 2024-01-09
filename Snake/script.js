@@ -8,7 +8,6 @@ $(document).ready(function () {
     let direction = 'right';
     let food = generateFood();
     let score = 0;
-    let boost = false;
     let speed = 100;
     let intervalId;
 
@@ -124,7 +123,7 @@ $(document).ready(function () {
         updateSnake();
         checkCollision();
     }
-    function getHighScore() {
+    function getHighScore(wynik) {
         var request = new XMLHttpRequest();
         request.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
@@ -132,10 +131,14 @@ $(document).ready(function () {
                 console.log(dane);
             }
         };
+        if(dane.user.some(user => user.score < wynik)){
+            filteredUsers.sort((a, b) => b.score - a.score);
+            const miejsce = filteredUsers[0].id;
+            $('#game-over-screen').append('<div class="newHighScore">Brawo! Udało ci się osiągnąć '+ miejsce +' miejsce w tableli wyników!</div>');
+        }
         request.open('GET', 'hScore.json', true);
         request.send();
     }
-
 
     function showTitleScreen() {
         $('#title-screen').show();
@@ -154,7 +157,7 @@ $(document).ready(function () {
         $('#title-screen').hide();
         $('#game-container').hide();
         $('#score').hide();
-        getHighScore();
+        getHighScore(score);
     }
 
     $(document).keydown(function (e) {
