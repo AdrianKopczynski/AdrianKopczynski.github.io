@@ -135,29 +135,12 @@ $(document).ready(function () {
                 const miejsce = filteredUsers[0].id;
                 $('#game-over-screen').append('<div class="newHighScore">Brawo! Udało ci się osiągnąć ' + miejsce + ' miejsce w tableli wyników!</div>');
             }
-            const headerRow = $('#score-body').insertRow(0);
-            const headers = ['id', 'name', 'score'];
-            headers.forEach(headerText => {
-                const header = document.createElement('th');
-                const textNode = document.createTextNode(headerText);
-                header.appendChild(textNode);
-                headerRow.appendChild(header);
-            });
-
-            // Dodawanie danych
-            data.users.forEach(user => {
-                const row = table.insertRow(-1);
-                const cell1 = row.insertCell(0);
-                const cell2 = row.insertCell(1);
-                const cell3 = row.insertCell(2);
-
-                cell1.textContent = user.id;
-                cell2.textContent = user.name;
-                cell3.textContent = user.score;
-            });
-
-            // Dodawanie tabeli do dokumentu
-            $('#score-body').appendChild(table);
+            dane.users.forEach(user => {
+                let place = user.id;
+                let nick = user.name;
+                let points = user.score;
+                $('#score-body').append('<tr><td>'+place+'.</td><td>'+nick+'</td><td>'+points+'</td></tr>');
+            }); 
         };
 
         request.open('GET', 'hScore.json', true);
