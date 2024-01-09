@@ -22,10 +22,11 @@ $(document).ready(function () {
     function generateFood() {
         const x = Math.floor(Math.random() * gridSize) * tileSize;
         const y = Math.floor(Math.random() * gridSize) * tileSize;
-        let snake_pos = document.elementFromPoint(x, y);
-        if (snake_pos.classList.contains('.snake')) {
-            x = Math.floor(Math.random() * gridSize) * tileSize;
-            y = Math.floor(Math.random() * gridSize) * tileSize;
+        let food_pos = document.elementFromPoint(x, y);
+        if (food_pos.classList.contains('.snake')) {
+            x = 0;
+            y = 0;
+            generateFood();
         } else {
             $('#game-container').append('<div class="food" style="left:' + x + 'px; top:' + y + 'px;"></div>');
             return { x, y };
