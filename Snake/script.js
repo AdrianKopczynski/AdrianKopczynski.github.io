@@ -71,7 +71,12 @@ $(document).ready(function () {
         $('.snake').remove();
         
         for (segment of snake) {
-            $('#game-container').append('<div class="snake" id="snake '+ snake.lenght '" style="left:' + segment.x + 'px; top:' + segment.y + 'px;"></div>');
+            if(segment == snake[0]){
+                $('#game-container').append('<div class="snake" id="snakeHead" style="left:' + segment.x + 'px; top:' + segment.y + 'px;"></div>');
+            }
+            else{
+            $('#game-container').append('<div class="snake" style="left:' + segment.x + 'px; top:' + segment.y + 'px;"></div>');
+            }
         }
     }
 
