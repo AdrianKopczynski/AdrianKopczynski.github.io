@@ -1,158 +1,166 @@
 html,
 body {
-    background-color: #000;
-    height: 100%;
+  background-color: #000;
+  height: 100%;
 }
 
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    background: #222;
-    background: radial-gradient(#333333, #111);
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    color: #fff;
-    font: 100%/1.5 sans-serif;
-    overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background: #222;
+  background: radial-gradient(#333333, #111);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #fff;
+  font: 100%/1.5 sans-serif;
+  overflow: hidden;
 }
-
-#game-container {
-    position: relative;
-    width: 293px;
-    height: 293px;
-    border: 3px dashed #000;
+#how-to{
+  height: 200px;
+  width: 400px;
+  background-color: white;
+  color:black;
+  position: fixed;
+  left: 50%;
+  bottom: 20px;
+  transform: translate(-50%, -50%);
+  margin: 0 auto;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  border-radius: 25px;
+  justify-content: center;
+  align-items: center;
 }
-
-.snake {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    background-color: green;
-    border-radius: 90%;
+#controls{
+  text-align: center;
+  margin: 60px auto;
 }
-
-@keyframes glow {
-    0% {
-        box-shadow: 0px 0px 5px 5px rgba(255, 255, 255, 0.5);
-    }
-
-    100% {
-        box-shadow: 0px 0px 0px 0px rgba(255, 255, 255, 0.5);
-    }
+#hScore{
+  position: fixed;
+  top: 0;
+  right: 0;
 }
-
-.food {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    animation: glow 1s infinite;
+#arrow-keys{
+  position: relative;
+  text-align: center;
+  margin: 20px auto;
+  background-image: url("https://i.pngimg.me/thumb/f/720/4638844875964416.jpg");
+  background-position: center;
+  background-size: cover;
+  z-index: 30;
+  height: 90px;
+  width: 90px;
 }
-#snakeHead{
-    background-color:yellow;
-}
-#score{
-    background-color: white;
-    color:black;
-    border:2px solid;
-    width: 70px;
-    height: 20px;
-    justify-content: center;
-    align-items: center;
-    margin:2px;
-    padding: 2px;
-    float:left;
-    position:relative;
-}
-
-
-
-.strawberry {
-  position: absolute;
-  border-radius: 62% 54% 24% 70% / 68% 64% 20% 46%;
-  border: 2px solid black;
-  width: 20px;
-  height: 20px;
-  background: red;
+#title-screen {
+  z-index: 30;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.seed {
-  width: 2px;
-  height: 2px;
-  background: black;
-  margin: 1px 2px;
-  border-radius: 0% 100% 19% 80% / 0% 77% 21% 100%;
-}
-.row {
-  display: flex;
-  justify-content: center;
-}
-.seeds {
-  display: flex;
-  flex-direction: column;
-  padding-top: 8px;
-  transform: rotate(-45deg);
-  justify-content: center;
-}
-.row-1 div:nth-of-type(1) {
-  transform: rotate(80deg);
-}
-.row-2 div:nth-of-type(1) {
-  transform: rotate(70deg);
-}
-.row-2 div:nth-of-type(3) {
-  transform: rotate(10deg) translate(2px,2px);
-}
-.row-3 div:nth-of-type(3) {
-  transform: rotate(70deg) translate(2px,2px);
-}
-.row div:nth-of-type(2){
-  transform: translate(1px,-3px) rotate(45deg);
-}
-.leaf-1 {
-  position: absolute;
-  left: 0;
-  width: 10px;
-  height: 10px;
-  border-radius: 0% 100% 0% 28% / 0% 100% 0% 100% ;
-  border: 1px solid black;
-  transform: rotate(-80deg) translate(0px,-13px);
-  background: green;
-}
-.leaf.leaf-2 {
-  position: absolute;
-  left: 0;
-  top: -15px;
-  width: 15px;
-  height: 15px;
-  transform: rotate(-55deg) translate(-23px, 1px);
-  z-index: -2;
-}
-.leaf-2 .left {
-  position: absolute;
-  width: 100%;
+#game-over-screen{
+  z-index: 30;
   height: 100%;
-  background: radial-gradient(circle at -54% 78%, white 50%, black 50% calc(50% + 1px), transparent calc(50% + 1px));
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.leaf-2 .right {
-  position: absolute;
-  left: 0;
+#title {
+  position: relative;
+}
+
+#start-game {
+  position: relative;
+}
+
+#author {
+  position: fixed;
   bottom: 0;
-  width: 100%;
+  right: 0;
+}
+
+#game-container {
+  position: relative;
+  width: 735px;
+  height: 735px;
+  border: 3px dashed #000;
+  background-image: url("https://img.freepik.com/premium-vector/abstract-paper-background-with-shadows-green-colors_444390-12263.jpg");
+}
+
+.snake {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-color: rgb(124, 124, 124);
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0px 0px 5px 5px rgba(255, 255, 255, 0.5);
+  }
+
+  100% {
+    box-shadow: 0px 0px 0px 0px rgba(255, 255, 255, 0.5);
+  }
+}
+
+.food {
+  position: relative;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  animation: glow 1s;
+  background-image: url("https://static.vecteezy.com/system/resources/previews/027/143/671/original/fresh-single-strawberry-isolated-on-transparent-background-png.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+  z-index: 10;
+
+}
+
+.food img {
+  position: absolute;
   height: 100%;
-  background: radial-gradient(circle at 0 100%, green 0 14px, black 14px 15px, transparent 15px);
-}
-.leaf.leaf-3 {
-  transform: scaleX(-1) rotate(20deg) translate(-4px, 4px);
-}
-.leaf.leaf-4 {
-  transform: scaleX(-1) translate(-17px, 0px);
+  width: 100%;
 }
 
+.snakeHeadLeft {
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px 0px 0px 10px;
+}
 
+.snakeHeadRight {
+  background-color: rgb(255, 255, 255);
+  border-radius: 0px 10px 10px 0px;
+}
+
+.snakeHeadUp {
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px 10px 0px 0px;
+}
+
+.snakeHeadDown {
+  background-color: rgb(255, 255, 255);
+  border-radius: 0px 0px 10px 10px;
+}
+
+#score {
+  background-color: white;
+  color: black;
+  border: 2px solid;
+  width: 70px;
+  height: 20px;
+  justify-content: center;
+  align-items: center;
+  margin: 2px;
+  padding: 2px;
+  float: left;
+  position: relative;
+}

@@ -1,16 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Snake Game</title>
 </head>
+
 <body>
     <div id="score">Score: 0</div>
     <div id="game-container"></div>
+    <div id="title-screen">
+        <div id="title">Snake Game v0.1</div>
+        <button id="start-game">
+            Start
+        </button>
+        <div id="how-to">
+            <div id="controls">
+                Use arrows to control the snake
+                <div id="arrow-keys"></div>
+            </div>
+        </div>
+        <div id="author">Created by Adrian Kopczynski</div>
+    </div>
+    <div id="game-over-screen">
+        <button id="exit">
+            Main Menu
+        </button>
+        <button id="try-again">
+            Try Again
+        </button>
+        <div id="hScore">
+            <h2>Tabela Wyników Gry</h2>
 
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+            <table id="score-table">
+                <thead>
+                    <tr>
+                        <tr>
+                            <th>Miejsce</th>
+                            <th>Gracz</th>
+                            <th>Wynik</th>
+                          </tr>
+                    </tr>
+                </thead>
+                <tbody id="score-body">
+                    <tr>
+                        <td>Gracz1</td>
+                        <td>50</td>
+                    </tr>
+                    <tr>
+                        <td>Gracz2</td>
+                        <td>40</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="script.js"></script>
 </body>
+
 </html>

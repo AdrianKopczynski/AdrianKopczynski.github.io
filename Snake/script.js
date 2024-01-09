@@ -1,22 +1,15 @@
 let isGameOver = false;
 let score = 0;
 
-function showTitleScreen() {
-    $('#title-screen').show();
-    $('#game-over-screen').hide();
-}
-
-function showGameOverScreen() {
-    $('#game-over-screen').show();
-    $('#title-screen').hide();
-}
 $(document).ready(function () {
-    const gridSize = 17;
-    const tileSize = 17;
+    const gridSize = 27;
+    const tileSize = 27;
     let snake = [{ x: 0, y: 0 }];
     let direction = 'right';
     let food = generateFood();
     let score = 0;
+    let boost = false;
+    let speed = 100;
     let intervalId;
 
     function generateFood() {
@@ -28,28 +21,49 @@ $(document).ready(function () {
             y = 0;
             generateFood();
         } else {
-            $('#game-container').append('<div class="food" style="left:' + x + 'px; top:' + y + 'px;"><div class="strawberry"><div class="seeds"><div class="row row-1"><div class="seed"></div><div class="seed"></div><div class="seed"></div></div><div class="row row-2"><div class="seed"></div><div class="seed"></div><div class="seed"></div></div><div class="row row-3"><div class="seed"></div><div class="seed"></div><div class="seed"></div></div><div class="row"><div class="seed"></div></div></div><div class="leaf-1 leaf"></div><div class="leaf-2 leaf"> <div class="right"></div><div class="left"></div></div><div class="leaf leaf-3 leaf-2"><div class="right"></div><div class="left"></div></div><div class="leaf leaf-4 leaf-2"><div class="right"></div><div class="left"></div></div></div></div>');
+            $('#game-container').append('<div class="food" id="cherry" style="left:' + x + 'px; top:' + y + 'px;"></div>');
             return { x, y };
         }
 
     }
 
+    function startGame() {
+        showGameContainer();
+        score = 0;
+        document.getElementById("score").innerHTML = "Score: " + score;
+        snake = [{ x: 0, y: 0 }];
+        direction = 'right';
+        intervalId = setInterval(gameLoop, speed);
+    }
+    function startAgain() {
+        score = 0;
+        document.getElementById("score").innerHTML = "Score: " + score;
+        snake = [{ x: 0, y: 0 }];
+        direction = 'right';
+        food = generateFood();
+        intervalId = setInterval(gameLoop, speed);
+    }
     function updateSnake() {
-        
+
         const head = { ...snake[0] };
-        
+        let headDirection = "snakeHeadRight";
+
         switch (direction) {
             case 'up':
                 head.y -= tileSize;
+                headDirection = "snakeHeadUp";
                 break;
             case 'down':
                 head.y += tileSize;
+                headDirection = "snakeHeadDown";
                 break;
             case 'left':
                 head.x -= tileSize;
+                headDirection = "snakeHeadLeft";
                 break;
             case 'right':
                 head.x += tileSize;
+                headDirection = "snakeHeadRight";
                 break;
         }
 
@@ -58,24 +72,28 @@ $(document).ready(function () {
         if (head.x === food.x && head.y === food.y) {
             $('.food').remove();
             food = generateFood();
-            score ++;
+            score++;
             document.getElementById("score").innerHTML = "Score: " + score;
         } else {
             snake.pop();
         }
 
         renderSnake();
+        $("#snakeHead").addClass(headDirection);
     }
 
     function renderSnake() {
         $('.snake').remove();
-        
+
         for (segment of snake) {
-            if(segment == snake[0]){
-                $('#game-container').append('<div class="snake" id="snakeHead" style="left:' + segment.x + 'px; top:' + segment.y + 'px;"></div>');
+            if (segment == snake[0]) {
+                $('#game-container').append('<div class="snake" id="snakeHead" style="left:' + segment.x + 'px; top:' + segment.y + 'px;"></div></div>');
             }
-            else{
-            $('#game-container').append('<div class="snake" style="left:' + segment.x + 'px; top:' + segment.y + 'px;"></div>');
+            else if (segment == snake[snake.length]) {
+                $('#game-container').append('<div class="snake" style="left:' + segment.x + 'px; top:' + segment.y + 'px;"></div>');
+            }
+            else {
+                $('#game-container').append('<div class="snake" style="left:' + segment.x + 'px; top:' + segment.y + 'px;"></div>');
             }
         }
     }
@@ -89,13 +107,7 @@ $(document).ready(function () {
             document.querySelectorAll('.food').forEach(function (element) {
                 element.remove();
             });
-            alert('Game Over!');
-            score = 0;
-            document.getElementById("score").innerHTML = "Score: " + score;
-            snake = [{ x: 0, y: 0 }];
-            direction = 'right';
-            food = generateFood();
-            intervalId = setInterval(gameLoop, 100);
+            showGameOverScreen()
         }
 
         for (let i = 1; i < snake.length; i++) {
@@ -103,14 +115,8 @@ $(document).ready(function () {
                 clearInterval(intervalId);
                 document.querySelectorAll('.food').forEach(function (element) {
                     element.remove();
-                });    
-                alert('Game Over!');
-                score = 0;
-                document.getElementById("score").innerHTML = "Score: " + score;
-                snake = [{ x: 0, y: 0 }];
-                direction = 'right';
-                food = generateFood();
-                intervalId = setInterval(gameLoop, 100);
+                });
+                showGameOverScreen()
             }
         }
     }
@@ -118,6 +124,39 @@ $(document).ready(function () {
         updateSnake();
         checkCollision();
     }
+    function getHighScore() {
+        var request = new XMLHttpRequest();
+        request.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                var dane = JSON.parse(this.responseText);
+                console.log(dane);
+            }
+        };
+        request.open('GET', 'hScore.json', true);
+        request.send();
+    }
+
+
+    function showTitleScreen() {
+        $('#title-screen').show();
+        $('#game-over-screen').hide();
+        $('#game-container').hide();
+        $('#score').hide();
+    }
+    function showGameContainer() {
+        $('#game-over-screen').hide();
+        $('#title-screen').hide();
+        $('#game-container').show();
+        $('#score').show();
+    }
+    function showGameOverScreen() {
+        $('#game-over-screen').show();
+        $('#title-screen').hide();
+        $('#game-container').hide();
+        $('#score').hide();
+        getHighScore();
+    }
+
     $(document).keydown(function (e) {
         switch (e.which) {
             case 37: // left
@@ -142,6 +181,17 @@ $(document).ready(function () {
                 break;
         }
     });
-    intervalId = setInterval(gameLoop, 100);
-    
+    showTitleScreen();
+    $('#start-game').on('click', function () {
+        showGameContainer();
+        startGame();
+    });
+    $('#try-again').on('click', function () {
+        showGameContainer();
+        startAgain();
+    });
+    $('#exit').on('click', function () {
+        showTitleScreen();
+    });
+
 });
