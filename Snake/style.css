@@ -72,23 +72,21 @@ body {
 
 
 .strawberry {
-  position: relative;
+  position: absolute;
   border-radius: 62% 54% 24% 70% / 68% 64% 20% 46%;
   border: 2px solid black;
-  width: 50px;
-  height: 50px;
+  width: 20px;
+  height: 20px;
   background: red;
   display: flex;
   justify-content: center;
   align-items: center;
-  left: 100px;
-  top: 100px;
 }
 .seed {
-  width: 4px;
-  height: 4px;
-  background: yellow;
-  margin: 4px 5px;
+  width: 2px;
+  height: 2px;
+  background: black;
+  margin: 1px 2px;
   border-radius: 0% 100% 19% 80% / 0% 77% 21% 100%;
 }
 .row {
