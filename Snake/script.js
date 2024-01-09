@@ -135,5 +135,6 @@ $(document).ready(function () {
                 break;
         }
     });
+    snake[0].style.backgroundColor = red;
     intervalId = setInterval(gameLoop, 100);
 });
