@@ -152,7 +152,6 @@ $(document).ready(function () {
         }
         else{
             console.log('No data yet...');
-            drawTable(data,wynik);
         }
     }
 
