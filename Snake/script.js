@@ -135,10 +135,12 @@ $(document).ready(function () {
 
         request.open('GET', 'hScore.json', true);
         request.send();
+        return dane;
     }
     function checkData(data){
         if(data != null){
-            clearInterval();
+            clearInterval(secondInterval);
+            console.log('Data collected: ' + data);
             drawTable(data,score);
         }
         else{
