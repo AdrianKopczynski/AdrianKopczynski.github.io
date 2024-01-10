@@ -134,9 +134,6 @@ $(document).ready(function () {
         };
 
         request.open('GET', 'hScore.json', true);
-        request.success(function(response){
-            drawTable(data,wynik);
-        });
         request.send();
     }
     function drawTable(data,wynik){
@@ -177,7 +174,7 @@ $(document).ready(function () {
         $('#game-container').hide();
         $('#score').hide();
         var data = getHighScore(score);
-        drawTable(data,score);
+        setInterval(drawTable(data,score),300);
     }
 
     $(document).keydown(function (e) {
