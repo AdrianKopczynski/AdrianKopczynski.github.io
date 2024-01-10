@@ -195,6 +195,8 @@ $(document).ready(function () {
                 }
             };
         }
+        request.open('GET', 'hScore.json', true);
+        request.send();
     function showGameOverScreen() {
         $('#game-over-screen').show();
         $('#title-screen').hide();
@@ -227,27 +229,8 @@ $(document).ready(function () {
                 break;
         }
     });
-    var request = new XMLHttpRequest();
-    let data;
-        request.onreadystatechange = function () {     
-            if (this.readyState == 4 && this.status == 200) {
-                data = JSON.parse(this.responseText);
-                console.log(data);
-                data.users.forEach(user => {
-                    if (data.user.some(user => user.score < wynik)) {
-                        filteredUsers.sort((a, b) => b.score - a.score);
-                        const miejsce = filteredUsers[0].id;
-                        $('#game-over-screen').append('<div class="newHighScore">Brawo! Udało ci się osiągnąć ' + miejsce + ' miejsce w tableli wyników!</div>');
-                    }
-                        let place = user.id;
-                        let nick = user.name;
-                        let points = user.score;
-                        $('#score-body').append('<tr><td>'+place+'.</td><td>'+nick+'</td><td>'+points+'</td></tr>');
-                });
-            }
-        };
-    request.open('GET', 'hScore.json', true);
-    request.send();
+
+    
     showTitleScreen();
     $('#start-game').on('click', function () {
         showGameContainer();
