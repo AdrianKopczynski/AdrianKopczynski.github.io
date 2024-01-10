@@ -12,6 +12,7 @@ $(document).ready(function () {
     let speed = 100;
     let intervalId;
     let secondInterval;
+    let dane;
 
     function generateFood() {
         const x = Math.floor(Math.random() * gridSize) * tileSize;
@@ -129,7 +130,7 @@ $(document).ready(function () {
         var request = new XMLHttpRequest();
         request.onreadystatechange = function () {     
             if (this.readyState == 4 && this.status == 200) {
-                let dane = JSON.parse(this.responseText);
+                dane = JSON.parse(this.responseText);
                 console.log(dane);
             }
         };
