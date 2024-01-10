@@ -1,3 +1,4 @@
+/*ver 0.05*/
 let isGameOver = false;
 let score = 0;
 
