@@ -208,7 +208,17 @@ $(document).ready(function () {
                 break;
         }
     });
-    let data = getHighScore(score);
+    var request = new XMLHttpRequest();
+    let data;
+        request.onreadystatechange = function () {     
+            if (this.readyState == 4 && this.status == 200) {
+                data = JSON.parse(this.responseText);
+                console.log(data);
+            }
+        };
+    console.log(data);
+    request.open('GET', 'hScore.json', true);
+    request.send();
     console.log(data);
     showTitleScreen();
     $('#start-game').on('click', function () {
