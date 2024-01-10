@@ -11,6 +11,7 @@ $(document).ready(function () {
     let score = 0;
     let speed = 100;
     let intervalId;
+    let secondInterval;
 
     function generateFood() {
         const x = Math.floor(Math.random() * gridSize) * tileSize;
@@ -145,7 +146,7 @@ $(document).ready(function () {
             drawTable(data,score);
         }
         else{
-                console.log('No data yet...');
+            console.log('No data yet...');
         }
     }
     function drawTable(data,wynik){
@@ -179,8 +180,8 @@ $(document).ready(function () {
         $('#title-screen').hide();
         $('#game-container').hide();
         $('#score').hide();
-        var data = getHighScore(score);
-        var secondInterval = setInterval(checkData(data),1000);
+        let data = getHighScore(score);
+        secondInterval = setInterval(checkData(data),1000);
     }
 
     $(document).keydown(function (e) {
