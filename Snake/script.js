@@ -129,7 +129,7 @@ $(document).ready(function () {
         var request = new XMLHttpRequest();
         request.onreadystatechange = function () {     
             if (this.readyState == 4 && this.status == 200) {
-                dane = JSON.parse(this.responseText);
+                let dane = JSON.parse(this.responseText);
                 console.log(dane);
             }
         };
