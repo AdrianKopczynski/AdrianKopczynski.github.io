@@ -190,12 +190,12 @@ $(document).ready(function () {
                 if (this.readyState == 4 && this.status == 200) {
                     data = JSON.parse(this.responseText);
                     console.log(data);
-                    data.users.forEach(user => {
+                    /*data.users.forEach(user => {
                         if (data.users.some(user => user.score < score)) {
                             let filteredUsers.sort((a, b) => b.score - a.score);
                             const miejsce = filteredUsers[0].id;
                             $('#game-over-screen').append('<div class="newHighScore">Brawo! Udało ci się osiągnąć ' + miejsce + ' miejsce w tableli wyników!</div>');
-                        }
+                        }*/
                             let place = user.id;
                             let nick = user.name;
                             let points = user.score;
