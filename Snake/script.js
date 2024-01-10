@@ -180,7 +180,6 @@ $(document).ready(function () {
         $('#title-screen').hide();
         $('#game-container').hide();
         $('#score').hide();
-        let data = getHighScore(score);
         secondInterval = setInterval(checkData(data),1000);
     }
 
@@ -208,6 +207,7 @@ $(document).ready(function () {
                 break;
         }
     });
+    let data = getHighScore(score);
     showTitleScreen();
     $('#start-game').on('click', function () {
         showGameContainer();
