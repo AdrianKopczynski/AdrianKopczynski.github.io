@@ -151,7 +151,7 @@ $(document).ready(function () {
         }
     }
     function drawTable(data,wynik){
-                    if (data.user.some(user => user.score < wynik)) {
+                    if (data.user.some(user => user.score < score)) {
                         filteredUsers.sort((a, b) => b.score - a.score);
                         const miejsce = filteredUsers[0].id;
                         $('#game-over-screen').append('<div class="newHighScore">Brawo! Udało ci się osiągnąć ' + miejsce + ' miejsce w tableli wyników!</div>');
