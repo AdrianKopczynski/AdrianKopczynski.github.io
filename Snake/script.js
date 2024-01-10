@@ -127,7 +127,6 @@ $(document).ready(function () {
     }
     function getHighScore(wynik) {
         var request = new XMLHttpRequest();
-        var dane;
         request.onreadystatechange = function () {     
             if (this.readyState == 4 && this.status == 200) {
                 dane = JSON.parse(this.responseText);
@@ -137,6 +136,7 @@ $(document).ready(function () {
 
         request.open('GET', 'hScore.json', true);
         request.send();
+        console.log(dane);
         return dane;
     }
     function checkData(data){
@@ -208,6 +208,7 @@ $(document).ready(function () {
         }
     });
     let data = getHighScore(score);
+    console.log(data);
     showTitleScreen();
     $('#start-game').on('click', function () {
         showGameContainer();
