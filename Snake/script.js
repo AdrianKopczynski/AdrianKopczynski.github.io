@@ -134,6 +134,9 @@ $(document).ready(function () {
         };
 
         request.open('GET', 'hScore.json', true);
+        request.success(function(response){
+            drawTable(data,wynik);
+        });
         request.send();
     }
     function drawTable(data,wynik){
