@@ -192,7 +192,7 @@ $(document).ready(function () {
                     console.log(data);
                     data.users.forEach(user => {
                         if (data.users.some(user => user.score < score)) {
-                            filteredUsers.sort((a, b) => b.score - a.score);
+                            let filteredUsers.sort((a, b) => b.score - a.score);
                             const miejsce = filteredUsers[0].id;
                             $('#game-over-screen').append('<div class="newHighScore">Brawo! Udało ci się osiągnąć ' + miejsce + ' miejsce w tableli wyników!</div>');
                         }
