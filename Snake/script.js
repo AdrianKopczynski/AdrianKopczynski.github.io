@@ -190,7 +190,7 @@ $(document).ready(function () {
                 if (this.readyState == 4 && this.status == 200) {
                     data = JSON.parse(this.responseText);
                     console.log(data);
-                    data.users.forEach(user => {
+                    data.user.forEach(user => {
                         if (data.user.some(user => user.score < wynik)) {
                             filteredUsers.sort((a, b) => b.score - a.score);
                             const miejsce = filteredUsers[0].id;
