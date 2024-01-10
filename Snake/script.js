@@ -175,6 +175,15 @@ $(document).ready(function () {
         $('#title-screen').hide();
         $('#game-container').show();
         $('#score').show();
+        
+        }
+        
+    function showGameOverScreen() {
+        $('#game-over-screen').show();
+        $('#title-screen').hide();
+        $('#game-container').hide();
+        $('#score').hide();
+        /*secondInterval = setInterval(checkData(data),1000);*/
         var request = new XMLHttpRequest();
         let data;
             request.onreadystatechange = function () {     
@@ -194,15 +203,8 @@ $(document).ready(function () {
                     });
                 }
             };
-        }
         request.open('GET', 'hScore.json', true);
         request.send();
-    function showGameOverScreen() {
-        $('#game-over-screen').show();
-        $('#title-screen').hide();
-        $('#game-container').hide();
-        $('#score').hide();
-        /*secondInterval = setInterval(checkData(data),1000);*/
     }
 
     $(document).keydown(function (e) {
