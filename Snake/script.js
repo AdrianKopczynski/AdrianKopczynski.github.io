@@ -136,9 +136,16 @@ $(document).ready(function () {
         request.open('GET', 'hScore.json', true);
         request.send();
     }
+    function checkData(data){
+        if(data != null){
+            clearInterval();
+            drawTable(data,score);
+        }
+        else{
+                console.log('No data yet...');
+        }
+    }
     function drawTable(data,wynik){
-        do{
-            if(data != null){
                     if (data.user.some(user => user.score < wynik)) {
                         filteredUsers.sort((a, b) => b.score - a.score);
                         const miejsce = filteredUsers[0].id;
@@ -150,11 +157,6 @@ $(document).ready(function () {
                         let points = user.score;
                         $('#score-body').append('<tr><td>'+place+'.</td><td>'+nick+'</td><td>'+points+'</td></tr>');
                     });
-            }
-            else{
-                console.log('No data yet...');
-            }
-        }while(data == null);
     }
 
     function showTitleScreen() {
@@ -175,7 +177,7 @@ $(document).ready(function () {
         $('#game-container').hide();
         $('#score').hide();
         var data = getHighScore(score);
-        setInterval(drawTable(data,score),300);
+        var secondInterval = setInterval(checkData(data),1000);
     }
 
     $(document).keydown(function (e) {
