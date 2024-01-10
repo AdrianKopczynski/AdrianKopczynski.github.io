@@ -131,23 +131,23 @@ $(document).ready(function () {
                 dane = JSON.parse(this.responseText);
                 console.log(dane);
             }
-            if (data && data.users && Array.isArray(data.users)) {
-                if (dane.user.some(user => user.score < wynik)) {
+        };
+
+        request.open('GET', 'hScore.json', true);
+        request.send();
+    }
+    function drawTable(data,wynik){
+                if (data.user.some(user => user.score < wynik)) {
                     filteredUsers.sort((a, b) => b.score - a.score);
                     const miejsce = filteredUsers[0].id;
                     $('#game-over-screen').append('<div class="newHighScore">Brawo! Udało ci się osiągnąć ' + miejsce + ' miejsce w tableli wyników!</div>');
                 }
-                dane.users.forEach(user => {
+                data.users.forEach(user => {
                     let place = user.id;
                     let nick = user.name;
                     let points = user.score;
                     $('#score-body').append('<tr><td>'+place+'.</td><td>'+nick+'</td><td>'+points+'</td></tr>');
                 }); 
-            }
-        };
-
-        request.open('GET', 'hScore.json', true);
-        request.send();
     }
 
     function showTitleScreen() {
@@ -167,7 +167,8 @@ $(document).ready(function () {
         $('#title-screen').hide();
         $('#game-container').hide();
         $('#score').hide();
-        getHighScore(score);
+        var data = getHighScore(score);
+        drawTable(data,score);
     }
 
     $(document).keydown(function (e) {
