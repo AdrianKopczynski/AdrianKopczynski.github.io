@@ -126,8 +126,8 @@ $(document).ready(function () {
     }
     function getHighScore(wynik) {
         var request = new XMLHttpRequest();
-        request.onreadystatechange = function () {
-            var dane;
+        var dane;
+        request.onreadystatechange = function () {     
             if (this.readyState == 4 && this.status == 200) {
                 dane = JSON.parse(this.responseText);
                 console.log(dane);
