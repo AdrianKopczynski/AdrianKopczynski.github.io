@@ -214,6 +214,12 @@ $(document).ready(function () {
             if (this.readyState == 4 && this.status == 200) {
                 data = JSON.parse(this.responseText);
                 console.log(data);
+                data.users.forEach(user => {
+                        let place = user.id;
+                        let nick = user.name;
+                        let points = user.score;
+                        $('#score-body').append('<tr><td>'+place+'.</td><td>'+nick+'</td><td>'+points+'</td></tr>');
+                });
             }
         };
     console.log(data);
