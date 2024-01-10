@@ -137,6 +137,7 @@ $(document).ready(function () {
         request.send();
     }
     function drawTable(data,wynik){
+        if(data != null){
                 if (data.user.some(user => user.score < wynik)) {
                     filteredUsers.sort((a, b) => b.score - a.score);
                     const miejsce = filteredUsers[0].id;
@@ -147,7 +148,12 @@ $(document).ready(function () {
                     let nick = user.name;
                     let points = user.score;
                     $('#score-body').append('<tr><td>'+place+'.</td><td>'+nick+'</td><td>'+points+'</td></tr>');
-                }); 
+                });
+        }
+        else{
+            console.log('No data yet...');
+            drawTable(data,wynik);
+        }
     }
 
     function showTitleScreen() {
