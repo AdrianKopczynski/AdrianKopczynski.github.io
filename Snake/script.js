@@ -34,6 +34,7 @@ $(document).ready(function () {
         document.getElementById("score").innerHTML = "Score: " + score;
         snake = [{ x: 0, y: 0 }];
         direction = 'right';
+        food = generateFood();
         intervalId = setInterval(gameLoop, speed);
     }
     function startAgain() {
@@ -209,6 +210,7 @@ $(document).ready(function () {
         }
         request.open('GET', 'hScore.json', true);
         request.send();
+        const fs = require('fs');
         fs.writeFileSync('hScore.json', JSON.stringify(data));
     }
 
