@@ -11,23 +11,20 @@ $(document).ready(function () {
     let score = 0;
     let speed = 100;
     let intervalId;
-    let secondInterval;
-    let dane;
 
     function generateFood() {
-        const x = Math.floor(Math.random() * gridSize) * tileSize;
-        const y = Math.floor(Math.random() * gridSize) * tileSize;
-        let isFoodInSnake = false;
+        let x = Math.floor(Math.random() * gridSize) * tileSize;
+        let y = Math.floor(Math.random() * gridSize) * tileSize;
         for (segment of snake) {
             if (segment.x === x && segment.y === y) {
-                generateFood();
-                isFoodInSnake = true;
+                x = 0;
+                y = 0;
+                x = Math.floor(Math.random() * gridSize) * tileSize;
+                y = Math.floor(Math.random() * gridSize) * tileSize;
             }
         }
-        if (isFoodInSnake != true) {
-            $('#game-container').append('<div class="food" id="cherry" style="left:' + x + 'px; top:' + y + 'px;"></div>');
-            return { x, y };
-        }
+        $('#game-container').append('<div class="food" id="cherry" style="left:' + x + 'px; top:' + y + 'px;"></div>');
+        return { x, y };
 
     }
 
@@ -94,7 +91,7 @@ $(document).ready(function () {
                 $('#game-container').append('<div class="snake" id="snakeHead" style="left:' + segment.x + 'px; top:' + segment.y + 'px;"></div></div>');
             }
             else if (segment == snake[snake.length]) {
-                $('#game-container').append('<div class="snake" style="left:' + segment.x + 'px; top:' + segment.y + 'px;"></div>');
+                $('#game-container').append('<div class="snake" id="last" style="left:' + segment.x + 'px; top:' + segment.y + 'px;"></div>');
             }
             else {
                 $('#game-container').append('<div class="snake" style="left:' + segment.x + 'px; top:' + segment.y + 'px;"></div>');
@@ -128,20 +125,6 @@ $(document).ready(function () {
         updateSnake();
         checkCollision();
     }
-    function getHighScore(wynik) {
-        var request = new XMLHttpRequest();
-        request.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                dane = JSON.parse(this.responseText);
-                console.log(dane);
-            }
-        };
-
-        request.open('GET', 'hScore.json', true);
-        request.send();
-        console.log(dane);
-        return dane;
-    }
 
     function showTitleScreen() {
         $('#title-screen').show();
@@ -162,7 +145,7 @@ $(document).ready(function () {
         $('#title-screen').hide();
         $('#game-container').hide();
         $('#score').hide();
-        /*var request = new XMLHttpRequest();
+        var request = new XMLHttpRequest();
         let data;
         request.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
@@ -173,11 +156,60 @@ $(document).ready(function () {
                     let nick = user.name;
                     let points = user.score;
                     $('#score-body').append('<tr><td>' + place + '.</td><td>' + nick + '</td><td>' + points + '</td></tr>');
+                    if(points < score){
+
+                        json.sort(function(a, b){
+                            return a.id - b.id;
+                        });
+                    }
                 });
-                request.open('GET', 'hScore.json', true);
-                request.send();
+
+
             }
-        }*/
+
+        }
+        request.open('GET', 'hScore.json', true);
+        request.send();
+    }
+
+    function getHScore(nick){
+        var request = new XMLHttpRequest();
+        let data;
+        let newHighScore = false;
+        request.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                data = JSON.parse(this.responseText);
+                console.log(data);
+                data.users.forEach(user => {
+                    let place = 1;
+                    let nick = user.name;
+                    let points = user.score;
+                    $('#score-body').append('<tr><td>' + place + '.</td><td>' + nick + '</td><td>' + points + '</td></tr>');
+                    place ++;
+                    if(points < score){
+                        newHighScore = true;
+                        data.pop();
+                    }
+                });
+                let newPlace = {
+                    'name' : nick,
+                    'score' : score,
+                };
+                if(newHighScore != false){
+                    data.push(newPlace);
+                }
+                data = json.sort(function(a, b){
+                    return a.score - b.score;
+                });
+
+                return data;
+
+            }
+
+        }
+        request.open('GET', 'hScore.json', true);
+        request.send();
+        fs.writeFileSync('hScore.json', JSON.stringify(data));
     }
 
     $(document).keydown(function (e) {
@@ -205,24 +237,7 @@ $(document).ready(function () {
         }
     });
 
-    var request = new XMLHttpRequest();
-    let data;
-    request.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            data = JSON.parse(this.responseText);
-            console.log(data);
-            data.users.forEach(user => {
-                let place = user.id;
-                let nick = user.name;
-                let points = user.score;
-                $('#score-body').append('<tr><td>' + place + '.</td><td>' + nick + '</td><td>' + points + '</td></tr>');
-            });
 
-        }
-
-    }
-    request.open('GET', 'hScore.json', true);
-    request.send();
     showTitleScreen();
     $('#start-game').on('click', function () {
         showGameContainer();
@@ -234,5 +249,9 @@ $(document).ready(function () {
     });
     $('#exit').on('click', function () {
         showTitleScreen();
+    });
+    let nickname = document.getElementById("newNick");
+    $('#sendNewScore').on('click', function () {
+        getHScore(nickname.value);
     });
 });
