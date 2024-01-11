@@ -111,7 +111,7 @@ $(document).ready(function () {
             document.querySelectorAll('.food').forEach(function (element) {
                 element.remove();
             });
-            showGameOverScreen()
+            showGameOverScreen();
         }
 
         for (let i = 1; i < snake.length; i++) {
@@ -120,7 +120,7 @@ $(document).ready(function () {
                 document.querySelectorAll('.food').forEach(function (element) {
                     element.remove();
                 });
-                showGameOverScreen()
+                showGameOverScreen();
             }
         }
     }
