@@ -162,7 +162,7 @@ $(document).ready(function () {
         $('#title-screen').hide();
         $('#game-container').hide();
         $('#score').hide();
-        var request = new XMLHttpRequest();
+        /*var request = new XMLHttpRequest();
         let data;
         request.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
@@ -177,45 +177,60 @@ $(document).ready(function () {
                 request.open('GET', 'hScore.json', true);
                 request.send();
             }
-        }
+        }*/
     }
 
-        $(document).keydown(function (e) {
-            switch (e.which) {
-                case 37: // left
-                    if (direction !== 'right') {
-                        direction = 'left';
-                    }
-                    break;
-                case 38: // up
-                    if (direction !== 'down') {
-                        direction = 'up';
-                    }
-                    break;
-                case 39: // right
-                    if (direction !== 'left') {
-                        direction = 'right';
-                    }
-                    break;
-                case 40: // down
-                    if (direction !== 'up') {
-                        direction = 'down';
-                    }
-                    break;
-            }
-        });
+    $(document).keydown(function (e) {
+        switch (e.which) {
+            case 37: // left
+                if (direction !== 'right') {
+                    direction = 'left';
+                }
+                break;
+            case 38: // up
+                if (direction !== 'down') {
+                    direction = 'up';
+                }
+                break;
+            case 39: // right
+                if (direction !== 'left') {
+                    direction = 'right';
+                }
+                break;
+            case 40: // down
+                if (direction !== 'up') {
+                    direction = 'down';
+                }
+                break;
+        }
+    });
 
-
+    var request = new XMLHttpRequest();
+    let data;
+    request.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            data = JSON.parse(this.responseText);
+            console.log(data);
+            data.users.forEach(user => {
+                let place = user.id;
+                let nick = user.name;
+                let points = user.score;
+                $('#score-body').append('<tr><td>' + place + '.</td><td>' + nick + '</td><td>' + points + '</td></tr>');
+            });
+            request.open('GET', 'hScore.json', true);
+            request.send();
+        }
+    }
+    showTitleScreen();
+    $('#start-game').on('click', function () {
+        showGameContainer();
+        startGame();
+    });
+    $('#try-again').on('click', function () {
+        showGameContainer();
+        startAgain();
+    });
+    $('#exit').on('click', function () {
         showTitleScreen();
-        $('#start-game').on('click', function () {
-            showGameContainer();
-            startGame();
-        });
-        $('#try-again').on('click', function () {
-            showGameContainer();
-            startAgain();
-        });
-        $('#exit').on('click', function () {
-            showTitleScreen();
-        });
+    });
 });
