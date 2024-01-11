@@ -146,25 +146,6 @@ $(document).ready(function () {
         $('#title-screen').hide();
         $('#game-container').hide();
         $('#score').hide();
-        var request = new XMLHttpRequest();
-        let data;
-        request.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                data = JSON.parse(this.responseText);
-                console.log(data);
-                data.users.forEach(user => {
-                    let place = user.id;
-                    let nick = user.name;
-                    let points = user.score;
-                    $('#score-body').append('<tr><td>' + place + '.</td><td>' + nick + '</td><td>' + points + '</td></tr>');
-                });
-
-
-            }
-
-        }
-        request.open('GET', 'hScore.json', true);
-        request.send();
     }
 
     function getHScore(nick, score) {
@@ -178,18 +159,6 @@ $(document).ready(function () {
                 let newHighScore = false;
                 let userIndex = -1;
     
-                data.users.forEach((user, index) => {
-                    let place = index + 1;
-                    let userNick = user.name;
-                    let points = user.score;
-    
-                    if (points < score) {
-                        newHighScore = true;
-                        userIndex = index;
-                    }
-    
-                    $('#score-body').append('<tr><td>' + place + '.</td><td>' + userNick + '</td><td>' + points + '</td></tr>');
-                });
     
                 let newPlace = {
                     'name': nick,
@@ -202,9 +171,24 @@ $(document).ready(function () {
                 }
     
                 data.users.sort((a, b) => b.score - a.score);
-    
-                // Save the updated data locally
+                document.querySelectorAll('#score-body').forEach(function (element) {
+                    element.remove();
+                });
                 saveScoreLocally(data);
+                data.users.forEach((user, index) => {
+                    let place = index + 1;
+                    let userNick = user.name;
+                    let points = user.score;
+    
+                    if (points < score) {
+                        newHighScore = true;
+                        userIndex = index;
+                    }
+    
+                    $('#score-body').append('<tr><td>' + place + '.</td><td>' + userNick + '</td><td>' + points + '</td></tr>');
+                });
+                // Save the updated data locally
+                
             }
         };
     
@@ -251,9 +235,7 @@ $(document).ready(function () {
     $('#try-again').on('click', function () {
         showGameContainer();
         startAgain();
-        document.querySelectorAll('#score-body').forEach(function (element) {
-            element.remove();
-        });
+        
     });
     $('#exit').on('click', function () {
         showTitleScreen();
