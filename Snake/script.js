@@ -199,12 +199,10 @@ $(document).ready(function () {
                 if(newHighScore != false){
                     data.push(newPlace);
                 }
-                data = json.sort(function(a, b){
+                data = JSON.sort(function(a, b){
                     return a.score - b.score;
                 });
-
                 return data;
-
             }
 
         }
