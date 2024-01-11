@@ -217,9 +217,10 @@ $(document).ready(function () {
                 let points = user.score;
                 $('#score-body').append('<tr><td>' + place + '.</td><td>' + nick + '</td><td>' + points + '</td></tr>');
             });
-            request.open('GET', 'hScore.json', true);
-            request.send();
+
         }
+        request.open('GET', 'hScore.json', true);
+        request.send();
     }
     showTitleScreen();
     $('#start-game').on('click', function () {
