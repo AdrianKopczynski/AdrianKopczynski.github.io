@@ -215,7 +215,7 @@ $(document).ready(function () {
     function saveScoreOnServer(data) {
         // Assuming a server-side endpoint using PHP
         var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'saveScore.php', true);
+        xhr.open('POST', 'saveScoreOnServer.php', true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.send(JSON.stringify(data));
     }
