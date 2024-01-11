@@ -203,15 +203,22 @@ $(document).ready(function () {
     
                 data.users.sort((a, b) => b.score - a.score);
     
-                const fs = require('fs');
-                fs.writeFileSync('hScore.json', JSON.stringify(data));
+                // Send the updated data to the server
+                saveScoreOnServer(data);
             }
         };
     
         request.open('GET', 'hScore.json', true);
         request.send();
     }
-
+    
+    function saveScoreOnServer(data) {
+        // Assuming a server-side endpoint using PHP
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'saveScore.php', true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(JSON.stringify(data));
+    }
     $(document).keydown(function (e) {
         switch (e.which) {
             case 37: // left
