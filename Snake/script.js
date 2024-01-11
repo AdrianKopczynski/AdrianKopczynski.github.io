@@ -18,8 +18,8 @@ $(document).ready(function () {
         const x = Math.floor(Math.random() * gridSize) * tileSize;
         const y = Math.floor(Math.random() * gridSize) * tileSize;
         let isFoodInSnake = false;
-        for (segment of snake){
-            if(snake.x === x && snake.y === y){
+        for (segment of snake) {
+            if (snake.x === x && snake.y === y) {
                 generateFood();
             }
         }
@@ -168,59 +168,60 @@ $(document).ready(function () {
             if (this.readyState == 4 && this.status == 200) {
                 data = JSON.parse(this.responseText);
                 console.log(data);
-                /*data.users.forEach(user => {
-                    if (data.users.some(user => user.score < score)) {
+                data.users.forEach(user => {
+                    /*if (data.users.some(user => user.score < score)) {
                         let filteredUsers.sort((a, b) => b.score - a.score);
                         const miejsce = filteredUsers[0].id;
                         $('#game-over-screen').append('<div class="newHighScore">Brawo! Udało ci się osiągnąć ' + miejsce + ' miejsce w tableli wyników!</div>');
                     }*/
-                let place = user.id;
-                let nick = user.name;
-                let points = user.score;
-                $('#score-body').append('<tr><td>' + place + '.</td><td>' + nick + '</td><td>' + points + '</td></tr>');
-            }
-            request.open('GET', 'hScore.json', true);
-            request.send();
-        };
-    }
-
-    $(document).keydown(function (e) {
-        switch (e.which) {
-            case 37: // left
-                if (direction !== 'right') {
-                    direction = 'left';
-                }
-                break;
-            case 38: // up
-                if (direction !== 'down') {
-                    direction = 'up';
-                }
-                break;
-            case 39: // right
-                if (direction !== 'left') {
-                    direction = 'right';
-                }
-                break;
-            case 40: // down
-                if (direction !== 'up') {
-                    direction = 'down';
-                }
-                break;
+                    let place = user.id;
+                    let nick = user.name;
+                    let points = user.score;
+                    $('#score-body').append('<tr><td>' + place + '.</td><td>' + nick + '</td><td>' + points + '</td></tr>');
+                });
+                request.open('GET', 'hScore.json', true);
+                request.send();
+            };
         }
-    });
+
+        $(document).keydown(function (e) {
+            switch (e.which) {
+                case 37: // left
+                    if (direction !== 'right') {
+                        direction = 'left';
+                    }
+                    break;
+                case 38: // up
+                    if (direction !== 'down') {
+                        direction = 'up';
+                    }
+                    break;
+                case 39: // right
+                    if (direction !== 'left') {
+                        direction = 'right';
+                    }
+                    break;
+                case 40: // down
+                    if (direction !== 'up') {
+                        direction = 'down';
+                    }
+                    break;
+            }
+        });
 
 
-    showTitleScreen();
-    $('#start-game').on('click', function () {
-        showGameContainer();
-        startGame();
-    });
-    $('#try-again').on('click', function () {
-        showGameContainer();
-        startAgain();
-    });
-    $('#exit').on('click', function () {
         showTitleScreen();
-    });
+        $('#start-game').on('click', function () {
+            showGameContainer();
+            startGame();
+        });
+        $('#try-again').on('click', function () {
+            showGameContainer();
+            startAgain();
+        });
+        $('#exit').on('click', function () {
+            showTitleScreen();
+        });
 
+    }
 });
