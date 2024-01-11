@@ -167,46 +167,49 @@ $(document).ready(function () {
         request.send();
     }
 
-    function getHScore(nick){
+    function getHScore(nick, score) {
         var request = new XMLHttpRequest();
         let data;
-        let newHighScore = false;
+    
         request.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 data = JSON.parse(this.responseText);
-                console.log(data);
-                data.users.forEach(user => {
-                    let place = 1;
-                    let nick = user.name;
+    
+                let newHighScore = false;
+                let userIndex = -1;
+    
+                data.users.forEach((user, index) => {
+                    let place = index + 1;
+                    let userNick = user.name;
                     let points = user.score;
-                    document.querySelectorAll('#score-body').forEach(function (element) {
-                        element.remove();
-                    });
-                    $('#score-body').append('<tr><td>' + place + '.</td><td>' + nick + '</td><td>' + points + '</td></tr>');
-                    place ++;
-                    if(points < score){
+    
+                    if (points < score) {
                         newHighScore = true;
-                        data.pop();
+                        userIndex = index;
                     }
+    
+                    $('#score-body').append('<tr><td>' + place + '.</td><td>' + userNick + '</td><td>' + points + '</td></tr>');
                 });
+    
                 let newPlace = {
-                    'name' : nick,
-                    'score' : score,
+                    'name': nick,
+                    'score': score,
                 };
-                if(newHighScore != false){
-                    data.push(newPlace);
+    
+                if (newHighScore) {
+                    data.users.splice(userIndex, 0, newPlace);
+                    data.users.pop(); // Remove the last element to keep the list length consistent
                 }
-                data = JSON.sort(function(a, b){
-                    return a.score - b.score;
-                });
-                return data;
+    
+                data.users.sort((a, b) => b.score - a.score);
+    
+                const fs = require('fs');
+                fs.writeFileSync('hScore.json', JSON.stringify(data));
             }
-
-        }
+        };
+    
         request.open('GET', 'hScore.json', true);
         request.send();
-        const fs = require('fs');
-        fs.writeFileSync('hScore.json', JSON.stringify(data));
     }
 
     $(document).keydown(function (e) {
@@ -249,6 +252,6 @@ $(document).ready(function () {
     });
     let nickname = document.getElementById("newNick");
     $('#sendNewScore').on('click', function () {
-        getHScore(nickname.value);
+        getHScore(nickname.value,score);
     });
 });
