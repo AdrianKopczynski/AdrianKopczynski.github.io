@@ -183,6 +183,7 @@ $(document).ready(function () {
                 request.send();
             };
         }
+    }
 
         $(document).keydown(function (e) {
             switch (e.which) {
@@ -222,6 +223,4 @@ $(document).ready(function () {
         $('#exit').on('click', function () {
             showTitleScreen();
         });
-
-    }
 });
