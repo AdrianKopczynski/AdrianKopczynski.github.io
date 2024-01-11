@@ -17,12 +17,13 @@ $(document).ready(function () {
     function generateFood() {
         const x = Math.floor(Math.random() * gridSize) * tileSize;
         const y = Math.floor(Math.random() * gridSize) * tileSize;
-        let food_pos = document.elementFromPoint(x, y);
-        if (food_pos.classList.contains('.snake')) {
-            x = 0;
-            y = 0;
-            generateFood();
-        } else {
+        let isFoodInSnake = false;
+        for (segment of snake){
+            if(snake.x === x && snake.y === y){
+                generateFood();
+            }
+        }
+        if (isFoodInSnake != true) {
             $('#game-container').append('<div class="food" id="cherry" style="left:' + x + 'px; top:' + y + 'px;"></div>');
             return { x, y };
         }
@@ -139,29 +140,6 @@ $(document).ready(function () {
         request.send();
         console.log(dane);
         return dane;
-    }
-    function checkData(data) {
-        if (data != null) {
-            clearInterval(secondInterval);
-            console.log('Data collected: ' + data);
-            drawTable(data, score);
-        }
-        else {
-            console.log('No data yet...');
-        }
-    }
-    function drawTable(data, wynik) {
-        if (data.user.some(user => user.score < score)) {
-            filteredUsers.sort((a, b) => b.score - a.score);
-            const miejsce = filteredUsers[0].id;
-            $('#game-over-screen').append('<div class="newHighScore">Brawo! Udało ci się osiągnąć ' + miejsce + ' miejsce w tableli wyników!</div>');
-        }
-        data.users.forEach(user => {
-            let place = user.id;
-            let nick = user.name;
-            let points = user.score;
-            $('#score-body').append('<tr><td>' + place + '.</td><td>' + nick + '</td><td>' + points + '</td></tr>');
-        });
     }
 
     function showTitleScreen() {
