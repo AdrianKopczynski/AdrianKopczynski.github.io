@@ -7,7 +7,7 @@ $(document).ready(function () {
     const tileSize = 27;
     let snake = [{ x: 0, y: 0 }];
     let direction = 'right';
-    let food = generateFood();
+    let food;
     let score = 0;
     let speed = 100;
     let intervalId;
@@ -214,7 +214,7 @@ $(document).ready(function () {
     
     function saveScoreLocally(data) {
         // Use localStorage to save the data locally
-        localStorage.setItem('hScoreData', JSON.stringify(data));
+        localStorage.setItem('hScore.json', JSON.stringify(data));
     }
     $(document).keydown(function (e) {
         switch (e.which) {
@@ -246,13 +246,22 @@ $(document).ready(function () {
     $('#start-game').on('click', function () {
         showGameContainer();
         startGame();
+        document.querySelectorAll('#score-body').forEach(function (element) {
+            element.remove();
+        });
     });
     $('#try-again').on('click', function () {
         showGameContainer();
         startAgain();
+        document.querySelectorAll('#score-body').forEach(function (element) {
+            element.remove();
+        });
     });
     $('#exit').on('click', function () {
         showTitleScreen();
+        document.querySelectorAll('#score-body').forEach(function (element) {
+            element.remove();
+        });
     });
     let nickname = document.getElementById("newNick");
     $('#sendNewScore').on('click', function () {
