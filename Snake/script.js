@@ -246,9 +246,6 @@ $(document).ready(function () {
     $('#start-game').on('click', function () {
         showGameContainer();
         startGame();
-        document.querySelectorAll('#score-body').forEach(function (element) {
-            element.remove();
-        });
     });
     $('#try-again').on('click', function () {
         showGameContainer();
