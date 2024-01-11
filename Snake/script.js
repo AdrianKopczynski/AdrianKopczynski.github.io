@@ -219,9 +219,10 @@ $(document).ready(function () {
             });
 
         }
-        request.open('GET', 'hScore.json', true);
-        request.send();
+
     }
+    request.open('GET', 'hScore.json', true);
+    request.send();
     showTitleScreen();
     $('#start-game').on('click', function () {
         showGameContainer();
