@@ -157,12 +157,6 @@ $(document).ready(function () {
                     let nick = user.name;
                     let points = user.score;
                     $('#score-body').append('<tr><td>' + place + '.</td><td>' + nick + '</td><td>' + points + '</td></tr>');
-                    if(points < score){
-
-                        json.sort(function(a, b){
-                            return a.id - b.id;
-                        });
-                    }
                 });
 
 
@@ -185,6 +179,9 @@ $(document).ready(function () {
                     let place = 1;
                     let nick = user.name;
                     let points = user.score;
+                    document.querySelectorAll('#score-body').forEach(function (element) {
+                        element.remove();
+                    });
                     $('#score-body').append('<tr><td>' + place + '.</td><td>' + nick + '</td><td>' + points + '</td></tr>');
                     place ++;
                     if(points < score){
