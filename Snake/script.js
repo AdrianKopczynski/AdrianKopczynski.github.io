@@ -203,8 +203,8 @@ $(document).ready(function () {
     
                 data.users.sort((a, b) => b.score - a.score);
     
-                // Send the updated data to the server
-                saveScoreOnServer(data);
+                // Save the updated data locally
+                saveScoreLocally(data);
             }
         };
     
@@ -212,12 +212,9 @@ $(document).ready(function () {
         request.send();
     }
     
-    function saveScoreOnServer(data) {
-        // Assuming a server-side endpoint using PHP
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'saveScoreOnServer.php', true);
-        xhr.setRequestHeader('Content-Type', 'application/json');
-        xhr.send(JSON.stringify(data));
+    function saveScoreLocally(data) {
+        // Use localStorage to save the data locally
+        localStorage.setItem('hScoreData', JSON.stringify(data));
     }
     $(document).keydown(function (e) {
         switch (e.which) {
