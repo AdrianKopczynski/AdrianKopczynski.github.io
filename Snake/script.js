@@ -21,6 +21,7 @@ $(document).ready(function () {
         for (segment of snake) {
             if (segment.x === x && segment.y === y) {
                 generateFood();
+                isFoodInSnake = true;
             }
         }
         if (isFoodInSnake != true) {
