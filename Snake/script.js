@@ -19,7 +19,7 @@ $(document).ready(function () {
         const y = Math.floor(Math.random() * gridSize) * tileSize;
         let isFoodInSnake = false;
         for (segment of snake) {
-            if (snake.x === x && snake.y === y) {
+            if (segment.x === x && segment.y === y) {
                 generateFood();
             }
         }
