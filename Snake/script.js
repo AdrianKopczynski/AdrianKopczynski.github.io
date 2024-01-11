@@ -167,7 +167,7 @@ $(document).ready(function () {
     
                 if (newHighScore) {
                     data.users.splice(userIndex, 0, newPlace);
-                    data.users.pop(); // Remove the last element to keep the list length consistent
+                    data.users.pop();
                 }
     
                 data.users.sort((a, b) => b.score - a.score);
@@ -187,7 +187,6 @@ $(document).ready(function () {
     
                     $('#score-body').append('<tr><td>' + place + '.</td><td>' + userNick + '</td><td>' + points + '</td></tr>');
                 });
-                // Save the updated data locally
                 
             }
         };
@@ -197,7 +196,6 @@ $(document).ready(function () {
     }
     
     function saveScoreLocally(data) {
-        // Use localStorage to save the data locally
         localStorage.setItem('hScore', JSON.stringify(data));
         console.log(data);
     }
@@ -239,9 +237,6 @@ $(document).ready(function () {
     });
     $('#exit').on('click', function () {
         showTitleScreen();
-        document.querySelectorAll('#score-body').forEach(function (element) {
-            element.remove();
-        });
     });
     let nickname = document.getElementById("newNick");
     $('#sendNewScore').on('click', function () {
