@@ -214,7 +214,7 @@ $(document).ready(function () {
     
     function saveScoreLocally(data) {
         // Use localStorage to save the data locally
-        localStorage.setItem('hScore.json', JSON.stringify(data));
+        localStorage.setItem('hScore', JSON.stringify(data));
         console.log(data);
     }
     $(document).keydown(function (e) {
