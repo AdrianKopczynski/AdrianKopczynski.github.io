@@ -91,9 +91,6 @@ $(document).ready(function () {
             if (segment == snake[0]) {
                 $('#game-container').append('<div class="snake" id="snakeHead" style="left:' + segment.x + 'px; top:' + segment.y + 'px;"></div></div>');
             }
-            else if (segment == snake[snake.length]) {
-                $('#game-container').append('<div class="snake" id="last" style="left:' + segment.x + 'px; top:' + segment.y + 'px;"></div>');
-            }
             else {
                 $('#game-container').append('<div class="snake" style="left:' + segment.x + 'px; top:' + segment.y + 'px;"></div>');
             }
@@ -146,75 +143,6 @@ $(document).ready(function () {
         $('#title-screen').hide();
         $('#game-container').hide();
         $('#score').hide();
-        var request = new XMLHttpRequest();
-        let data;
-    
-        request.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                data = JSON.parse(this.responseText);
-                saveScoreLocally(data);
-                data.users.forEach((user, index) => {
-                    let place = index + 1;
-                    let userNick = user.name;
-                    let points = user.score;
-    
-                    $('#score-body').append('<tr><td>' + place + '.</td><td>' + userNick + '</td><td>' + points + '</td></tr>');
-                });
-                
-            }
-        };
-    }
-
-    function getHScore(nick, score) {
-        var request = new XMLHttpRequest();
-        let data;
-    
-        request.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                data = JSON.parse(this.responseText);
-    
-                let newHighScore = false;
-                let userIndex = -1;
-    
-    
-                let newPlace = {
-                    'name': nick,
-                    'score': score,
-                };
-    
-                if (newHighScore) {
-                    data.users.splice(userIndex, 0, newPlace);
-                    data.users.pop();
-                }
-    
-                data.users.sort((a, b) => b.score - a.score);
-                document.querySelectorAll('#score-body').forEach(function (element) {
-                    element.remove();
-                });
-                saveScoreLocally(data);
-                data.users.forEach((user, index) => {
-                    let place = index + 1;
-                    let userNick = user.name;
-                    let points = user.score;
-    
-                    if (points < score) {
-                        newHighScore = true;
-                        userIndex = index;
-                    }
-    
-                    $('#score-body').append('<tr><td>' + place + '.</td><td>' + userNick + '</td><td>' + points + '</td></tr>');
-                });
-                
-            }
-        };
-    
-        request.open('GET', 'hScore.json', true);
-        request.send();
-    }
-    
-    function saveScoreLocally(data) {
-        localStorage.setItem('hScore', JSON.stringify(data));
-        console.log(data);
     }
     $(document).keydown(function (e) {
         switch (e.which) {
@@ -254,9 +182,5 @@ $(document).ready(function () {
     });
     $('#exit').on('click', function () {
         showTitleScreen();
-    });
-    let nickname = document.getElementById("newNick");
-    $('#sendNewScore').on('click', function () {
-        getHScore(nickname.value,score);
     });
 });
