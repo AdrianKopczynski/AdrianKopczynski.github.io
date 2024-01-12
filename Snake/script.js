@@ -146,6 +146,23 @@ $(document).ready(function () {
         $('#title-screen').hide();
         $('#game-container').hide();
         $('#score').hide();
+        var request = new XMLHttpRequest();
+        let data;
+    
+        request.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                data = JSON.parse(this.responseText);
+                saveScoreLocally(data);
+                data.users.forEach((user, index) => {
+                    let place = index + 1;
+                    let userNick = user.name;
+                    let points = user.score;
+    
+                    $('#score-body').append('<tr><td>' + place + '.</td><td>' + userNick + '</td><td>' + points + '</td></tr>');
+                });
+                
+            }
+        };
     }
 
     function getHScore(nick, score) {
